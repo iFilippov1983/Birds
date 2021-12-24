@@ -1,5 +1,6 @@
 public static class UIElementName
 {
-    public const string Bar = "bar";
-    public const string BarSubstract = "barSubstract";
+    public const string BarFront = "barFront";
+    public const string BarBack = "barBack";
+    public const string BarBackTemplate = "barBackTemplate";
 }

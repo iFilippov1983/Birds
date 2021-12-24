@@ -1,16 +1,19 @@
 using UnityEngine;
 
-public class MousePosition2D : MonoBehaviour
+namespace Birds
 {
-    [SerializeField] private Camera _mainCamera;
-
-    private Vector3 _mouseWorldPosition;
-
-    private void Update()
+    public class MousePosition2D : MonoBehaviour
     {
-        _mouseWorldPosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        _mouseWorldPosition.z = 0f;
+        [SerializeField] private Camera _mainCamera;
 
-        transform.position = _mouseWorldPosition;
+        private Vector3 _mouseWorldPosition;
+
+        private void Update()
+        {
+            _mouseWorldPosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            _mouseWorldPosition.z = 0f;
+
+            transform.position = _mouseWorldPosition;
+        }
     }
 }

@@ -1,38 +1,44 @@
 using System;
 using UnityEngine;
 
-public class HitShotsSystem
+namespace Birds
 {
-    private int _hitShotsAmount;
-    private int _hitShotsAmountMax;
-
-    public HitShotsSystem(int hitShotsAmount)
+    public class HitShotsSystem
     {
-        _hitShotsAmountMax = hitShotsAmount;
-        _hitShotsAmount = hitShotsAmount;
-    }
+        private int _hitShotsAmount;
+        private int _hitShotsAmountMax;
 
-    public Action OnSubstract;
-    public Action OnAdd;
+        public HitShotsSystem(int hitShotsAmount)
+        {
+            _hitShotsAmountMax = hitShotsAmount;
+            _hitShotsAmount = hitShotsAmount;
+        }
 
-    public void Substract(int amount)
-    {
-        _hitShotsAmount -= amount;
-        if (_hitShotsAmount < 0) _hitShotsAmount = 0;
+        public Action OnSubstract;
+        public Action OnAdd;
 
-        OnSubstract?.Invoke();
-    }
+        public void Substract(int amount)
+        {
+            _hitShotsAmount -= amount;
+            if (_hitShotsAmount < 0) _hitShotsAmount = 0;
 
-    public void Add(int amount)
-    {
-        _hitShotsAmount += amount;
-        if (_hitShotsAmount > _hitShotsAmountMax) _hitShotsAmount = _hitShotsAmountMax;
+            OnSubstract?.Invoke();
 
-        OnAdd?.Invoke();
-    }
+            Debug.Log(OnSubstract.Method);
+        }
 
-    public float GetHitShotsNormalized()
-    {
-        return (float)_hitShotsAmount / _hitShotsAmountMax; 
+        public void Add(int amount)
+        {
+            _hitShotsAmount += amount;
+            if (_hitShotsAmount > _hitShotsAmountMax) _hitShotsAmount = _hitShotsAmountMax;
+
+            OnAdd?.Invoke();
+        }
+
+        public float GetHitShotsNormalized()
+        {
+            return (float)_hitShotsAmount / _hitShotsAmountMax;
+        }
     }
 }
+
