@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Birds
@@ -9,35 +7,35 @@ namespace Birds
         [SerializeField] private GameData _gameData;
         private ControllersProxy _controllers;
 
-        private void Awake()
+        public void Awake()
         {
             _controllers = new ControllersProxy();
             new GameInitializer(_controllers, _gameData);
             _controllers.Configure();
         }
 
-        void Start()
+        public void Start()
         {
             _controllers.Initialize();
         }
 
-        void Update()
+        public void Update()
         {
             var deltaTime = Time.deltaTime;
             _controllers.Execute(deltaTime);
         }
 
-        private void FixedUpdate()
+        public void FixedUpdate()
         {
             _controllers.FixedExecute();
         }
 
-        private void LateUpdate()
+        public void LateUpdate()
         {
             _controllers.LateExecute();
         }
 
-        private void OnDestroy()
+        public void OnDestroy()
         {
             _controllers.Cleanup();
         }

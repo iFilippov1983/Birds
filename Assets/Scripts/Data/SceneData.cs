@@ -7,13 +7,14 @@ namespace Birds
     {
         private const string DataFolderPath = "Scene/";
 
-        [SerializeField] private readonly string _scoresBarPrefabPath;
-        [SerializeField] private readonly string _borderLeftPrefabPath;
-        [SerializeField] private readonly string _borderRightPrefabPath;
-        [SerializeField] private readonly string _mainCameraPrefabPath;
-        [SerializeField] private readonly string _eventSystemPath;
-        [SerializeField] private readonly string _cloudsSpawnFieldPrefabPath;
-        [SerializeField] private readonly string _cloudPrefabPath;
+        [SerializeField] private string _scoresBarPrefabPath;
+        [SerializeField] private string _borderLeftPrefabPath;
+        [SerializeField] private string _borderRightPrefabPath;
+        [SerializeField] private string _mainCameraPrefabPath;
+        [SerializeField] private string _eventSystemPath;
+        [SerializeField] private string _cloudsSpawnFieldPrefabPath;
+        [SerializeField] private string _cloudPrefabPath;
+        [SerializeField] private string _timerPrefabPath;
 
         private GameObject _scoresBarPrefab;
         private GameObject _borderLeftPrefab;
@@ -22,6 +23,7 @@ namespace Birds
         private GameObject _eventSystem;
         private Transform _cloudsSpawnFieldPrefab;
         private GameObject _cloudPrefab;
+        private GameObject _timerPrefab;
 
         public GameObject MainCanvas
         {
@@ -93,5 +95,14 @@ namespace Birds
             }
         }
 
+        public GameObject TimerPrefab
+        {
+            get
+            {
+                if (_timerPrefab == null) _timerPrefab =
+                         Resources.Load<GameObject>(DataFolderPath + _timerPrefabPath);
+                return _timerPrefab;
+            }
+        }
     }
 }

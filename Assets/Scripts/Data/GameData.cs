@@ -8,31 +8,13 @@ namespace Birds
     {
         private const string DataFolderPath = "GameData/";
 
-        [SerializeField] private int _scoresToGetBonus = 5;
-        [SerializeField] private int _scoresPerHit = 1;
-
-        [SerializeField] private string _playerDataPath;
         [SerializeField] private string _sceneDataPath;
-        [SerializeField] private string _uiDataPath;
-        [SerializeField] private string _gameProgressDataPath;
+        [SerializeField] private string _interactiveObjectsDataPath;
+        [SerializeField] private string _gamePropertiesPath;
 
-        private PlayerData _playerData;
         private SceneData _sceneData;
-        private UIData _uiData;
-        private GameProgressData _gameProgressData;
-
-        public int ScoresToGetBonus => _scoresToGetBonus;
-        public int ScoresPerHit => _scoresPerHit;
-
-        public PlayerData PlayerData
-        {
-            get
-            {
-                if (_playerData == null) _playerData =
-                        LoadPath<PlayerData>(DataFolderPath + _playerDataPath);
-                return _playerData;
-            }
-        }
+        private InteractiveObjectsData _interactiveObjectsData;
+        private GameProperties _gameProperties;
 
         public SceneData SceneData
         {
@@ -44,23 +26,23 @@ namespace Birds
             }
         }
 
-        public UIData UIData
+        public InteractiveObjectsData InateractiveObjectsData
         {
             get
             {
-                if (_uiData == null) _uiData =
-                        LoadPath<UIData>(DataFolderPath + _uiDataPath);
-                return _uiData;
+                if (_interactiveObjectsData == null) _interactiveObjectsData =
+                        LoadPath<InteractiveObjectsData>(DataFolderPath + _interactiveObjectsDataPath);
+                return _interactiveObjectsData;
             }
         }
 
-        public GameProgressData GameProgressData
+        public GameProperties GameProperties
         {
             get
             {
-                if (_gameProgressData == null) _gameProgressData =
-                        LoadPath<GameProgressData>(DataFolderPath + _gameProgressDataPath);
-                return _gameProgressData;
+                if (_gameProperties == null) _gameProperties =
+                        LoadPath<GameProperties>(DataFolderPath + _gamePropertiesPath);
+                return _gameProperties;
             }
         }
 

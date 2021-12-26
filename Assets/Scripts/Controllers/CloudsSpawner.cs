@@ -27,7 +27,7 @@ namespace Birds
         public void SpawnClouds()
         {
             GameObject parent = new GameObject();
-            parent.name = "Clouds";
+            parent.name = UIElement.Clouds;
 
             for(int index = 1; index < _points.Length; index++)
             {

@@ -11,11 +11,13 @@ namespace Birds
         private GameObject _borderLeft;
         private GameObject _borderRight;
         private Camera _mainCamera;
+        private GameObject _timer;
 
         public GameObject ScoresBar => _scoresBar;
         public GameObject BorderLeft => _borderLeft;
         public GameObject BorderRight => _borderRight;
         public List<GameObject> Clouds => _cloudsSpawner.Clouds;
+        public GameObject Timer => _timer;
 
         public SceneInitializer(GameData gameData)
         {
@@ -29,12 +31,15 @@ namespace Birds
             _mainCamera = Object.Instantiate(_sceneData.MainCamera);
             _borderLeft = Object.Instantiate(_sceneData.BorderLeft);
             _borderRight = Object.Instantiate(_sceneData.BorderRight);
+            _timer = Object.Instantiate(_sceneData.TimerPrefab);
             Object.Instantiate(_sceneData.EventSystem);
         }
 
         public void Initialize()
         {
             _scoresBar.GetComponent<Canvas>().worldCamera = _mainCamera;
+            _timer.GetComponent<Canvas>().worldCamera = _mainCamera;
+
             _cloudsSpawner.SpawnClouds();
         }
     }

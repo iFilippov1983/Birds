@@ -12,3 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 466792d7079ec6c48834a37dd92b0d52, type: 3}
   m_Name: SceneData
   m_EditorClassIdentifier: 
+  _scoresBarPrefabPath: ScoresBar
+  _borderLeftPrefabPath: BorderLeft
+  _borderRightPrefabPath: BorderRight
+  _mainCameraPrefabPath: MainCamera
+  _eventSystemPath: EventSystem
+  _cloudsSpawnFieldPrefabPath: CloudsSpawnField
+  _cloudPrefabPath: CloudPrefab
+  _timerPrefabPath: TimerCanvas
