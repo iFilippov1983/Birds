@@ -134,4 +134,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efc37d058c4290a4cb1e98298cc14cbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _birdPropertisPath: BirdWhite_Properties
+  _hitObjectPropertiesPath: BirdWhite_Properties

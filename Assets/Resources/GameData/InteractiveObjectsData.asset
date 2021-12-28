@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e7df375f44a1b34ab93ee7f8dc2a273, type: 3}
   m_Name: InteractiveObjectsData
   m_EditorClassIdentifier: 
-  _birdsPrefabs:
-  - {fileID: 840804694570133004, guid: 50f6e45e9e690b546a491a3eb9e6a928, type: 3}
-  - {fileID: 2607288807029272845, guid: 89a1ca86a6f0af146a521599efd054fa, type: 3}
-  - {fileID: 4297936830671649444, guid: efb2bbfe4676ab647aa0cd86f50cb4fe, type: 3}
-  _bonusPrefab: {fileID: 8058940748674286645, guid: eb3fec39d5a9b0240a3250b4ba009ea9, type: 3}
+  _hitObjectsPrefabs:
+  - {fileID: 4199827693343507670, guid: 50f6e45e9e690b546a491a3eb9e6a928, type: 3}
+  - {fileID: -3298030473956432260, guid: 89a1ca86a6f0af146a521599efd054fa, type: 3}
+  - {fileID: 6001546494638938492, guid: efb2bbfe4676ab647aa0cd86f50cb4fe, type: 3}
+  _bonusesPrefabs:
+  - {fileID: 2641003610538864357, guid: eb3fec39d5a9b0240a3250b4ba009ea9, type: 3}

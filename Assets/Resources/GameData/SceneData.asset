@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: SceneData
   m_EditorClassIdentifier: 
   _scoresBarPrefabPath: ScoresBar
-  _borderLeftPrefabPath: BorderLeft
-  _borderRightPrefabPath: BorderRight
+  _spawnPointLeftPrefabPath: BorderLeft
+  _spawnPointRightPrefabPath: BorderRight
   _mainCameraPrefabPath: MainCamera
   _eventSystemPath: EventSystem
   _cloudsSpawnFieldPrefabPath: CloudsSpawnField

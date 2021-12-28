@@ -5,10 +5,10 @@ namespace Birds
     [CreateAssetMenu(menuName = "GameData/InteractiveObjectsData", fileName = "InteractiveObjectsData")]
     public class InteractiveObjectsData : ScriptableObject
     {
-        [SerializeField] private Transform[] _birdsPrefabs;
-        [SerializeField] private Transform _bonusPrefab;
+        [SerializeField] private HitObject[] _hitObjectsPrefabs;
+        [SerializeField] private Bonus[] _bonusesPrefabs;
 
-        public Transform[] BirdsPrefabs => _birdsPrefabs;
-        public Transform BonusPrefab => _bonusPrefab;
+        public HitObject[] HitObjectsPrefabs => _hitObjectsPrefabs;
+        public Bonus[] BonusesPrefabs => _bonusesPrefabs;
     }
 }

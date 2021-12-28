@@ -29,8 +29,8 @@ namespace Birds
         {
             _scoresBar = Object.Instantiate(_sceneData.MainCanvas);
             _mainCamera = Object.Instantiate(_sceneData.MainCamera);
-            _borderLeft = Object.Instantiate(_sceneData.BorderLeft);
-            _borderRight = Object.Instantiate(_sceneData.BorderRight);
+            _borderLeft = Object.Instantiate(_sceneData.SpawnPointLeft);
+            _borderRight = Object.Instantiate(_sceneData.SpawnPointRight);
             _timer = Object.Instantiate(_sceneData.TimerPrefab);
             Object.Instantiate(_sceneData.EventSystem);
         }

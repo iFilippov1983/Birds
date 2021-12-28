@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Birds
 {
     [CreateAssetMenu(menuName = "GameData/GameData", fileName = "GameData")]
-    public class GameData : ScriptableObject
+    public sealed class GameData : ScriptableObject
     {
         private const string DataFolderPath = "GameData/";
 

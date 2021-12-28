@@ -8,8 +8,8 @@ namespace Birds
         private const string DataFolderPath = "Scene/";
 
         [SerializeField] private string _scoresBarPrefabPath;
-        [SerializeField] private string _borderLeftPrefabPath;
-        [SerializeField] private string _borderRightPrefabPath;
+        [SerializeField] private string _spawnPointLeftPrefabPath;
+        [SerializeField] private string _spawnPointRightPrefabPath;
         [SerializeField] private string _mainCameraPrefabPath;
         [SerializeField] private string _eventSystemPath;
         [SerializeField] private string _cloudsSpawnFieldPrefabPath;
@@ -17,8 +17,8 @@ namespace Birds
         [SerializeField] private string _timerPrefabPath;
 
         private GameObject _scoresBarPrefab;
-        private GameObject _borderLeftPrefab;
-        private GameObject _borderRightPrefab;
+        private GameObject _spawnPointLeftPrefab;
+        private GameObject _spawnPointRightPrefab;
         private Camera _mainCameraPrefab;
         private GameObject _eventSystem;
         private Transform _cloudsSpawnFieldPrefab;
@@ -35,23 +35,23 @@ namespace Birds
             }
         }
 
-        public GameObject BorderLeft
+        public GameObject SpawnPointLeft
         {
             get 
             {
-                if (_borderLeftPrefab == null) _borderLeftPrefab =
-                        Resources.Load<GameObject>(DataFolderPath + _borderLeftPrefabPath);
-                return _borderLeftPrefab;
+                if (_spawnPointLeftPrefab == null) _spawnPointLeftPrefab =
+                        Resources.Load<GameObject>(DataFolderPath + _spawnPointLeftPrefabPath);
+                return _spawnPointLeftPrefab;
             }
         }
 
-        public GameObject BorderRight
+        public GameObject SpawnPointRight
         {
             get
             {
-                if (_borderRightPrefab == null) _borderRightPrefab =
-                        Resources.Load<GameObject>(DataFolderPath + _borderRightPrefabPath);
-                return _borderRightPrefab;
+                if (_spawnPointRightPrefab == null) _spawnPointRightPrefab =
+                        Resources.Load<GameObject>(DataFolderPath + _spawnPointRightPrefabPath);
+                return _spawnPointRightPrefab;
             }
         }
 

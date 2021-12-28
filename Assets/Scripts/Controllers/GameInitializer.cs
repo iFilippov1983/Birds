@@ -9,6 +9,7 @@ namespace Birds
 
             controllers.Add(sceneInitializer);
             controllers.Add(scoresBarController);
+            controllers.Add(new InteractiveObjectsController(gameData));
         }
     }
 }
