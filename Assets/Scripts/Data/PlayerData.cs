@@ -5,8 +5,20 @@ namespace Birds
     [CreateAssetMenu(menuName = "GameData/PlayerData", fileName = "PlayerData")]
     public class PlayerData : ScriptableObject
     {
-        [SerializeField] private GameObject _mousePosition;
+        private const string DataPath = "Player/";
 
-        public GameObject MousePosition => _mousePosition;
+        [SerializeField] private string _mousePoritionPrefabPath;
+
+        private GameObject _mousePositionObject;
+
+        public GameObject MousePositionObject
+        {
+            get
+            {
+                if (_mousePositionObject == null) _mousePositionObject =
+                             Resources.Load<GameObject>(DataPath + _mousePoritionPrefabPath);
+                return _mousePositionObject;
+            }
+        }
     }
 }

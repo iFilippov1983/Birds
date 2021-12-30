@@ -6,10 +6,15 @@ namespace Birds
         {
             var sceneInitializer = new SceneInitializer(gameData);
             var scoresBarController = new ScoresBarController(gameData, sceneInitializer);
-
+            var timerController = new TimerController(gameData.GameProperties, sceneInitializer);
+            var interactiveObjectsController = new InteractiveObjectsController(gameData);
+            var gameProgressController = new GameProgressController(gameData.GameProperties, interactiveObjectsController, scoresBarController, timerController);
+            
             controllers.Add(sceneInitializer);
             controllers.Add(scoresBarController);
-            controllers.Add(new InteractiveObjectsController(gameData));
+            controllers.Add(timerController);
+            controllers.Add(interactiveObjectsController);
+            controllers.Add(gameProgressController);
         }
     }
 }

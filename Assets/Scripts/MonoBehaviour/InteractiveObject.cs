@@ -1,10 +1,7 @@
-﻿using System.IO;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Birds
 {
     public abstract class InteractiveObject : MonoBehaviour
-    {
-        public abstract void Interact();
-    }
+    { }
 }

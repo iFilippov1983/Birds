@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4297936830671649450}
   - component: {fileID: 5143587636780982944}
   - component: {fileID: 6001546494638938492}
+  - component: {fileID: 1018458314704467825}
   m_Layer: 3
   m_Name: BirdWhite
   m_TagString: Bird
@@ -104,7 +105,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!58 &5143587636780982944
 CircleCollider2D:
@@ -135,3 +136,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hitObjectPropertiesPath: BirdWhite_Properties
+--- !u!95 &1018458314704467825
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4297936830671649451}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 630cc202be268bd429b2eb92fd44a594, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

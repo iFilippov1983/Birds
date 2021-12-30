@@ -37,3 +37,5 @@ sysinfo.txt
 *.unitypackage
 *.log
 *.json
+Logs/ApiUpdaterCheck.txt
+*.txt

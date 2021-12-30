@@ -6,12 +6,6 @@ namespace Birds
     {
         private GameObject _interactiveObject;
 
-        //???
-        public InteractiveObjectBuilder()
-        {
-            _interactiveObject = new GameObject("IOBuilder");
-        }
-
         public InteractiveObjectBuilder MakeInstance(IInteractive prefab)
         {
             var obj = prefab.GetSelfGameObject();

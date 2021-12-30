@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 542b3b66e2dd1ec44b7af0ab9cf378e4, type: 3}
-  m_Name: GameData
+  m_Script: {fileID: 11500000, guid: dc92f98df2773b34984d0dc9c40a62a9, type: 3}
+  m_Name: PlayerData
   m_EditorClassIdentifier: 
-  _sceneDataPath: SceneData
-  _interactiveObjectsDataPath: InteractiveObjectsData
-  _gamePropertiesPath: GameProperies
-  _playerDataPath: PlayerData
+  _mousePoritionPrefabPath: MouseTarget

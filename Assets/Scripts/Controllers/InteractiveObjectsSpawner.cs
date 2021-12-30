@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -9,7 +8,7 @@ namespace Birds
     {
         private InteractiveObjectsData _interactiveObjectsData;
         private InteractiveObjectBuilder _builder;
-        private HitObject[] _hitObject;
+        private HitObject[] _hitObjects;
         private Bonus[] _bonuses;
         private float _minMultiplyer;
         private float _maxMultiplyer;
@@ -29,14 +28,14 @@ namespace Birds
 
         public Stack<HitObject> CreateUnactiveHitObjectsStack()
         {
-            _hitObject = _interactiveObjectsData.HitObjectsPrefabs;
+            _hitObjects = _interactiveObjectsData.HitObjectsPrefabs;
 
             var stack = new Stack<HitObject>();
 
-            foreach (HitObject ho in _hitObject)
+            foreach (HitObject ho in _hitObjects)
             {
-                var amont = ho.Properties.AmountOnScene;
-                for (int index = 0; index < amont; index++)
+                var amount = ho.Properties.AmountOnScene;
+                for (int index = 0; index < amount; index++)
                 {
                     var obj = SpawnUnactive(ho) as HitObject;
                     stack.Push(obj);
@@ -66,9 +65,10 @@ namespace Birds
         {
             interactiveObj.gameObject.SetActive(true);
 
-            if (interactiveObj is HitObject)
+            if (interactiveObj.GetType().Equals(typeof(HitObject)))
             {
                 interactiveObj.transform.position = CalculateRandomPosition();
+                interactiveObj.GetComponent<SpriteRenderer>().flipX = _isFliped;
                 SetRandomScale(interactiveObj as HitObject);
             }
 

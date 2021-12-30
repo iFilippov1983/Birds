@@ -35,39 +35,15 @@ namespace Birds
         {
             _lifeTime = Properties.LifeTime;
         }
-        private void Update()
-        {
-            
-        }
 
         private void FixedUpdate()
         {
             Live();
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        private void OnMouseDown()
         {
-            //if (collision.gameObject.tag.Equals(Tag.Finish))
-            //{
-            //    gameObject.SetActive(false);
-
-            //    OnEscape?.Invoke();
-            //}
-
-            if (collision.gameObject.GetComponent<MousePosition2D>())
-            {
-                if (Input.GetKeyDown(KeyCode.Mouse0))
-                {
-                    Interact();
-
-                    OnHit?.Invoke(this);
-                } 
-            }
-        }
-
-        public override void Interact()
-        {
-            
+            OnHit?.Invoke(this);
         }
 
         public GameObject GetSelfGameObject() => gameObject;
@@ -80,7 +56,6 @@ namespace Birds
 
             if (_lifeTime < 0 && notVisible)
             {
-
                 OnEscape?.Invoke(this);
             } 
         }

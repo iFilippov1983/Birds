@@ -10,38 +10,37 @@ namespace Birds
         private GameData _gameData;
         private InteractiveObjectsSpawner _spawner;
         private InteractiveObjectsDriver _driver;
+        private AnimationController _animationSpawner;
         private Stack<HitObject> _hitObjStack;
-        private Stack<HitObject> _objectsToSwing;
         private Dictionary<BonusType, GameObject> _bonusesDictionary;
-        private InteractiveObjectsData _interactiveObjectsData;
-        private Camera _camera;
-        private float _cameraSize;
         private float _spawnRate;
         private float _timeCounter;
         private float _spawnOffset;
+        private Vector3 _bonusPosition;
+        private Vector3 _interactiveObjectPosition;
 
         public InteractiveObjectsController(GameData gameData)
         {
             _gameData = gameData;
             _driver = new InteractiveObjectsDriver();
-            _interactiveObjectsData = _gameData.InateractiveObjectsData;
             _spawnRate = _gameData.GameProperties.SpawnRate;
             _spawnOffset = _gameData.GameProperties.SpawnOffset;
         }
 
-        public Action<HitObject> OnHitObjectDestroyed;
-        public Action<Bonus> OnBonusHit;
-
+        public Action OnHitObjectDestroyed;
+        public Action OnHitObjectEscape;
+        public Action OnBonusHit;
+        
         public void Initialize()
         {
-            _camera = Object.FindObjectOfType<Camera>();
-            _cameraSize = _camera.orthographicSize;
+            var cameraSize = Camera.main.orthographicSize;
+            var spawnRange = cameraSize - _spawnOffset;
 
-            var spawnRange = _cameraSize - _spawnOffset;
             _spawner = new InteractiveObjectsSpawner(_gameData, spawnRange);
             _hitObjStack = _spawner.CreateUnactiveHitObjectsStack();
             _bonusesDictionary = _spawner.CreateUnactiveBonusesDictionary();
-            _objectsToSwing = new Stack<HitObject>();
+
+            _animationSpawner = new AnimationController(_gameData.GameProperties);
 
             SubscribeOnHOEvents();
             SubscribeOnBonusesEvents();
@@ -59,10 +58,16 @@ namespace Birds
 
         public void Cleanup()
         {
+            _animationSpawner.ClearStack();
             UnsubscribeFromHOEvents();
             UnsubscribeFromBonusesEvents();
+        }
 
-            _objectsToSwing.Clear();
+        public void SpawBonus(BonusType type)
+        {
+            var bonus = _bonusesDictionary[type];
+            bonus.transform.position = _bonusPosition;
+            _driver.DriveBonus(bonus);
         }
 
         private void SpawnHitObjects()
@@ -70,43 +75,50 @@ namespace Birds
             if (_timeCounter > _spawnRate && _hitObjStack.Count != 0)
             {
                 _timeCounter = 0;
-
                 var hitObj = _hitObjStack.Pop();
                 _spawner.Respawn(hitObj);
                 _driver.DriveHitObject(hitObj);
-
-                _objectsToSwing.Push(hitObj);
             }
         }
 
-        private void LifeTimeTermination(HitObject hitObject)
+        private void HitObjectEscape(HitObject hitObject)
         {
+            OnHitObjectEscape?.Invoke();
             _driver.StopHitObject(hitObject);
             _hitObjStack.Push(hitObject);
         }
 
         private void BonusLifeTimeTermination(Bonus bonus)
         {
-            _driver.StopBonus(bonus);
+            _driver.StopBonus(bonus.gameObject);
         }
 
         private void ObjectHit(HitObject hitObject)
         {
-            LifeTimeTermination(hitObject);
-            OnHitObjectDestroyed?.Invoke(hitObject);
+            _bonusPosition = hitObject.transform.position;
+
+            _interactiveObjectPosition = hitObject.transform.position;
+            _animationSpawner.PlayDestroyAnimation(_interactiveObjectPosition);
+
+            OnHitObjectDestroyed?.Invoke();
+            _driver.StopHitObject(hitObject);
+            _hitObjStack.Push(hitObject);
         }
 
         private void BonusHit(Bonus bonus)
         {
+            _interactiveObjectPosition = bonus.transform.position;
+            _animationSpawner.PlayDestroyAnimation(_interactiveObjectPosition);
+
+            OnBonusHit?.Invoke();
             BonusLifeTimeTermination(bonus);
-            OnBonusHit?.Invoke(bonus);
         }
 
         private void SubscribeOnHOEvents()
         {
             foreach (HitObject ho in _hitObjStack)
             {
-                ho.OnEscape += LifeTimeTermination;
+                ho.OnEscape += HitObjectEscape;
                 ho.OnHit += ObjectHit;
             }
         }
@@ -118,14 +130,14 @@ namespace Birds
             {
                 foreach (HitObject ho in liveObjects)
                 {
-                    ho.OnEscape -= LifeTimeTermination;
+                    ho.OnEscape -= HitObjectEscape;
                     ho.OnHit -= ObjectHit;
                 }
             }
             
             foreach (HitObject ho in _hitObjStack)
             {
-                ho.OnEscape -= LifeTimeTermination;
+                ho.OnEscape -= HitObjectEscape;
                 ho.OnHit -= ObjectHit;
             }
         }
@@ -142,11 +154,11 @@ namespace Birds
 
         private void UnsubscribeFromBonusesEvents()
         {
-            var liveObjects = Object.FindObjectsOfType(typeof(Bonus));
+            var bonuses = Object.FindObjectsOfType(typeof(Bonus));
 
-            if (liveObjects != null)
+            if (bonuses != null)
             {
-                foreach (Bonus b in liveObjects)
+                foreach (Bonus b in bonuses)
                 {
                     b.OnLifeTermination -= BonusLifeTimeTermination;
                     b.OnShot -= BonusHit;

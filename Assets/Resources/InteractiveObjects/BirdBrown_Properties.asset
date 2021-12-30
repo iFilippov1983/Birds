@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _minSizeMultiplyer: 0.4
   _maxSizeMultiplyer: 0.5
-  _minSpeed: 1
-  _maxSpeed: 6
+  _minSpeed: 10
+  _maxSpeed: 16
   _amountOnScene: 5
-  _lifeTime: 2
+  _lifeTime: 10
+  _destroyAnimation: {fileID: 8020092092323554020, guid: ff49933d5f8182043838022af00911e1, type: 3}

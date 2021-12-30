@@ -12,6 +12,7 @@ namespace Birds
         private BonusProperties _properties;
         private float _lifeTime;
         private SpriteRenderer _spriteRenderer;
+        private UnityEngine.Object _explosionPrefab;
 
         public Action<Bonus> OnLifeTermination;
         public Action<Bonus> OnShot;
@@ -41,22 +42,9 @@ namespace Birds
             Live();
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        private void OnMouseDown()
         {
-            if (collision.gameObject.GetComponent<MousePosition2D>())
-            {
-                if (Input.GetKeyDown(KeyCode.Mouse0))
-                {
-                    Interact();
-
-                    OnShot?.Invoke(this);
-                }
-            }
-        }
-
-        public override void Interact()
-        {
-
+            OnShot?.Invoke(this);
         }
 
         public GameObject GetSelfGameObject() => gameObject;

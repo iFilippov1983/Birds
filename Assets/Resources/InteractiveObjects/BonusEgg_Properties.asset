@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: BonusEgg_Properties
   m_EditorClassIdentifier: 
   _type: 1
-  _minSizeMultiplyer: 0.5
-  _maxSizeMultiplyer: 0.6
+  _minSizeMultiplyer: 0.6
+  _maxSizeMultiplyer: 0.7
   _timeBonus: 10
-  _lifeTime: 1
+  _lifeTime: 2
+  _destroyAnimation: {fileID: 8020092092323554020, guid: ff49933d5f8182043838022af00911e1, type: 3}

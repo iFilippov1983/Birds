@@ -4,8 +4,6 @@ namespace Birds
 {
     public class InteractiveObjectsDriver
     {
-        private float _xPosition;
-        private float _yPosition;
         private HitObjectProperties _properties;
 
         public void DriveHitObject(HitObject hitObject)
@@ -15,17 +13,23 @@ namespace Birds
             _properties = hitObject.Properties;
             var maxSpeed = _properties.MaxSpeed;
             var minSpeed = _properties.MinSpeed;
-
             var speed = Random.Range(minSpeed, maxSpeed);
-            bool left = hitObject.gameObject.GetComponent<SpriteRenderer>().flipX;
 
-            //temp
-            Debug.Log(left);
+            Vector2 force;
+            bool isTurnedLeft = hitObject.gameObject.GetComponent<SpriteRenderer>().flipX;
 
-            if (left) speed *= -1;
-
+            if (isTurnedLeft)
+            {
+                speed *= -1;
+                force = new Vector2(hitObject.transform.position.x * speed, 0);
+            }
+            else
+            {
+                var direction = -(hitObject.transform.position.x);
+                force = new Vector2(direction * speed, 0);
+            }
             var rb = hitObject.gameObject.GetComponent<Rigidbody2D>();
-            rb.AddForce(hitObject.transform.position * speed);
+            rb.AddForce(force);
         }
 
         public void StopHitObject(HitObject hitObject)
@@ -36,17 +40,17 @@ namespace Birds
             hitObject.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
 
-        public void DriveBonus(Bonus bonus)
+        public void DriveBonus(GameObject bonus)
         {
-            bonus.gameObject.SetActive(true);
-            bonus.gameObject.GetComponent<Rigidbody2D>().gravityScale = 1;
+            bonus.SetActive(true);
+            bonus.GetComponent<Rigidbody2D>().gravityScale = 1;
         }
 
-        public void StopBonus(Bonus bonus)
+        public void StopBonus(GameObject bonus)
         {
-            bonus.gameObject.SetActive(false);
+            bonus.SetActive(false);
             bonus.transform.localScale = Vector3.one;
-            var rb = bonus.gameObject.GetComponent<Rigidbody2D>();
+            var rb = bonus.GetComponent<Rigidbody2D>();
             rb.gravityScale = 0;
             rb.velocity = Vector2.zero;
         }

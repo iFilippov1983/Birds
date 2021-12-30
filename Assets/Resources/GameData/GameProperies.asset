@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scoresToGetBonus: 5
   _scoresPerHit: 1
+  _scoresOnStart: 10
   _gameTimeOnStart: 30
-  _birdsSpawnRate: 1
+  _timeToAddForBonus: 10
+  _birdsSpawnRate: 0.5
   _spawnOffset: 1
+  _destroyAnimationPrefab: {fileID: 8020092092323554020, guid: ff49933d5f8182043838022af00911e1, type: 3}
