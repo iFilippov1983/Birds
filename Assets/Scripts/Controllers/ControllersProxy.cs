@@ -89,7 +89,5 @@ namespace Birds
             foreach (ICleanup controller in _cleanupControllers)
                 controller.Cleanup();
         }
-
-
     }
 }

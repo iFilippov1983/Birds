@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Birds
 {
-    class AnimationController
+    class HitAnimationController
     {
         private GameObject _destroyAnomationPrefab;
         private Stack<GameObject> _animationGOs;
 
-        public AnimationController(GameProperties gameProperties)
+        public HitAnimationController(GameProperties gameProperties)
         {
             _destroyAnomationPrefab = gameProperties.DestroyAnimation;
             _animationGOs = new Stack<GameObject>();

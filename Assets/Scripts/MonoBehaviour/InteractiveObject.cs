@@ -3,5 +3,6 @@
 namespace Birds
 {
     public abstract class InteractiveObject : MonoBehaviour
-    { }
+    { 
+    }
 }

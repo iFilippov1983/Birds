@@ -10,7 +10,7 @@ namespace Birds
         private GameData _gameData;
         private InteractiveObjectsSpawner _spawner;
         private InteractiveObjectsDriver _driver;
-        private AnimationController _animationSpawner;
+        private HitAnimationController _animationSpawner;
         private Stack<HitObject> _hitObjStack;
         private Dictionary<BonusType, GameObject> _bonusesDictionary;
         private float _spawnRate;
@@ -40,7 +40,7 @@ namespace Birds
             _hitObjStack = _spawner.CreateUnactiveHitObjectsStack();
             _bonusesDictionary = _spawner.CreateUnactiveBonusesDictionary();
 
-            _animationSpawner = new AnimationController(_gameData.GameProperties);
+            _animationSpawner = new HitAnimationController(_gameData.GameProperties);
 
             SubscribeOnHOEvents();
             SubscribeOnBonusesEvents();
