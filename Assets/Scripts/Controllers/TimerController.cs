@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,16 +6,16 @@ namespace Birds
 {
     class TimerController : IInitialize, IExecute
     {
-        private GameProperties _gameProperties;
         private SceneInitializer _sceneInitializer;
         private Canvas _timerCanvas;
         private Text _text;
         private float _seconds;
 
-        public TimerController(GameProperties properties, SceneInitializer sceneInitializer)
+        public TimerController(float timeOnStart, SceneInitializer sceneInitializer)
         {
-            _gameProperties = properties;
+            _seconds = timeOnStart;
             _sceneInitializer = sceneInitializer;
+            
         }
 
         public Action OnTimeElapsed;
@@ -28,7 +24,6 @@ namespace Birds
         {
             _timerCanvas = _sceneInitializer.Timer;
             _text = _timerCanvas.transform.Find(UIElement.Text).GetComponent<Text>();
-            _seconds = _gameProperties.GameTimeOnStart;
         }
 
         public void Execute(float deltatime)

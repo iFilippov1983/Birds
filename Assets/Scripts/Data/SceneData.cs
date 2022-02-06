@@ -30,7 +30,7 @@ namespace Birds
             get
             {
                 if (_scoresBarPrefab == null) _scoresBarPrefab =
-                        Resources.Load<GameObject>(DataFolderPath + _scoresBarPrefabPath);
+                        Resources.Load<GameObject>(string.Concat(DataFolderPath, _scoresBarPrefabPath));
                 return _scoresBarPrefab;
             }
         }
@@ -40,7 +40,7 @@ namespace Birds
             get 
             {
                 if (_spawnPointLeftPrefab == null) _spawnPointLeftPrefab =
-                        Resources.Load<GameObject>(DataFolderPath + _spawnPointLeftPrefabPath);
+                        Resources.Load<GameObject>(string.Concat(DataFolderPath, _spawnPointLeftPrefabPath));
                 return _spawnPointLeftPrefab;
             }
         }
@@ -50,7 +50,7 @@ namespace Birds
             get
             {
                 if (_spawnPointRightPrefab == null) _spawnPointRightPrefab =
-                        Resources.Load<GameObject>(DataFolderPath + _spawnPointRightPrefabPath);
+                        Resources.Load<GameObject>(string.Concat(DataFolderPath + _spawnPointRightPrefabPath));
                 return _spawnPointRightPrefab;
             }
         }
@@ -60,7 +60,7 @@ namespace Birds
             get
             {
                 if (_mainCameraPrefab == null) _mainCameraPrefab =
-                         Resources.Load<Camera>(DataFolderPath + _mainCameraPrefabPath);
+                         Resources.Load<Camera>(string.Concat(DataFolderPath, _mainCameraPrefabPath));
                 return _mainCameraPrefab;
             }
         }
@@ -70,7 +70,7 @@ namespace Birds
             get
             {
                 if (_eventSystem == null) _eventSystem =
-                         Resources.Load<GameObject>(DataFolderPath + _eventSystemPath);
+                         Resources.Load<GameObject>(string.Concat(DataFolderPath, _eventSystemPath));
                 return _eventSystem;
             }
         }
@@ -80,7 +80,7 @@ namespace Birds
             get
             {
                 if (_cloudsSpawnFieldPrefab == null) _cloudsSpawnFieldPrefab =
-                         Resources.Load<Transform>(DataFolderPath + _cloudsSpawnFieldPrefabPath);
+                         Resources.Load<Transform>(string.Concat(DataFolderPath, _cloudsSpawnFieldPrefabPath));
                 return _cloudsSpawnFieldPrefab;
             }
         }
@@ -90,7 +90,7 @@ namespace Birds
             get
             {
                 if (_cloudPrefab == null) _cloudPrefab = 
-                        Resources.Load<GameObject>(DataFolderPath + _cloudPrefabPath);
+                        Resources.Load<GameObject>(string.Concat(DataFolderPath, _cloudPrefabPath));
                 return _cloudPrefab;
             }
         }
@@ -100,7 +100,7 @@ namespace Birds
             get
             {
                 if (_timerPrefab == null) _timerPrefab =
-                         Resources.Load<GameObject>(DataFolderPath + _timerPrefabPath);
+                         Resources.Load<GameObject>(string.Concat(DataFolderPath, _timerPrefabPath));
                 return _timerPrefab;
             }
         }

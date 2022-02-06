@@ -27,12 +27,12 @@ namespace Birds
 
         public ScoresBarController(GameData gameData, SceneInitializer sceneInitializer)
         {
+            _sceneInitializer = sceneInitializer;
             _scoresToGetBonus = gameData.GameProperties.ScoresToGetBonus;
             _scoresPerHit = gameData.GameProperties.ScoresPerHit;
             _scoresOnStart = gameData.GameProperties.ScoresOnStart;
             _scoresSystem = new ScoresSystem(_scoresToGetBonus);
-
-            _sceneInitializer = sceneInitializer;
+            
         }
 
         public Action OnBarReset;
@@ -41,6 +41,7 @@ namespace Birds
         public void Configure()
         {
             _scoresBar = _sceneInitializer.ScoresBar;
+
             _frontBarImage = _scoresBar.transform.Find(UIElement.BarFront).GetComponent<Image>();
             _backBarImage = _scoresBar.transform.Find(UIElement.BarBack).GetComponent<Image>();
             _scoresLabel = _scoresBar.transform.Find(UIElement.Scores).GetComponent<Text>();

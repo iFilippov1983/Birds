@@ -76,14 +76,14 @@ namespace Birds
 
         private IInteractive SpawnUnactive(IInteractive prefab)
         {
-            var interactiveObject = _builder
-                                        .MakeInstance(prefab)
-                                        .SetPosition(CalculateRandomPosition())
-                                        .SetActivityState(false)
-                                        .SetSpriteRendererFlip(_isFliped)
-                                        .SetGravityScale(0)
-                                        .Build();
-
+            var interactiveObject = _builder.Build
+                (
+                prefab, 
+                CalculateRandomPosition(), 
+                false,
+                _isFliped,
+                0
+                );
             return interactiveObject;
         }
 

@@ -5,7 +5,7 @@ using Object = UnityEngine.Object;
 
 namespace Birds
 {
-    public class InteractiveObjectsController : IInitialize, IExecute, IFixedExecute, ICleanup
+    public sealed class InteractiveObjectsController : IInitialize, IExecute, IFixedExecute, ICleanup
     {
         private GameData _gameData;
         private InteractiveObjectsSpawner _spawner;
@@ -23,8 +23,9 @@ namespace Birds
         {
             _gameData = gameData;
             _driver = new InteractiveObjectsDriver();
-            _spawnRate = _gameData.GameProperties.SpawnRate;
-            _spawnOffset = _gameData.GameProperties.SpawnOffset;
+            _animationSpawner = new HitAnimationController(gameData.GameProperties.DestroyAnimation);
+            _spawnRate = gameData.GameProperties.SpawnRate;
+            _spawnOffset = gameData.GameProperties.SpawnOffset;
         }
 
         public Action OnHitObjectDestroyed;
@@ -35,20 +36,13 @@ namespace Birds
         {
             var cameraSize = Camera.main.orthographicSize;
             var spawnRange = cameraSize - _spawnOffset;
-
             _spawner = new InteractiveObjectsSpawner(_gameData, spawnRange);
+
             _hitObjStack = _spawner.CreateUnactiveHitObjectsStack();
             _bonusesDictionary = _spawner.CreateUnactiveBonusesDictionary();
 
-            _animationSpawner = new HitAnimationController(_gameData.GameProperties);
-
             SubscribeOnHOEvents();
             SubscribeOnBonusesEvents();
-        }
-
-        public void Execute(float deltatime)
-        {
-            _timeCounter += deltatime;
         }
 
         public void FixedExecute()
@@ -56,9 +50,13 @@ namespace Birds
             SpawnHitObjects();
         }
 
+        public void Execute(float deltatime)
+        {
+            _timeCounter += deltatime;
+        }
+
         public void Cleanup()
         {
-            _animationSpawner.ClearStack();
             UnsubscribeFromHOEvents();
             UnsubscribeFromBonusesEvents();
         }
@@ -167,7 +165,7 @@ namespace Birds
 
             for (int bonusType = 1; bonusType <= _bonusesDictionary.Keys.Count; bonusType++)
             {
-                var bonus = _bonusesDictionary[(BonusType)bonusType].GetComponent<Bonus>();
+                _bonusesDictionary[(BonusType)bonusType].TryGetComponent(out Bonus bonus);
                 bonus.OnLifeTermination -= BonusLifeTimeTermination;
                 bonus.OnShot -= BonusHit;
             }

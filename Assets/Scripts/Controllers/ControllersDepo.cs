@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Birds
 {
-    public class ControllersProxy : IConfigure, IInitialize, IExecute, IFixedExecute, ILateExecute, ICleanup
+    public class ControllersDepo : IConfigure, IInitialize, IExecute, IFixedExecute, ILateExecute, ICleanup
     {
         private readonly List<IConfigure> _configureController;
         private readonly List<IInitialize> _initializationControllers;
@@ -11,7 +11,7 @@ namespace Birds
         private readonly List<ILateExecute> _lateExecuteControllers;
         private readonly List<ICleanup> _cleanupControllers;
 
-        public ControllersProxy()
+        public ControllersDepo()
         {
             _configureController = new List<IConfigure>();
             _initializationControllers = new List<IInitialize>();

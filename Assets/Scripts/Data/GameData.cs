@@ -23,7 +23,7 @@ namespace Birds
             get
             {
                 if (_sceneData == null) _sceneData =
-                        LoadPath<SceneData>(DataFolderPath + _sceneDataPath);
+                        LoadPath<SceneData>(string.Concat(DataFolderPath, _sceneDataPath));
                 return _sceneData;
             }
         }
@@ -33,7 +33,7 @@ namespace Birds
             get
             {
                 if (_interactiveObjectsData == null) _interactiveObjectsData =
-                        LoadPath<InteractiveObjectsData>(DataFolderPath + _interactiveObjectsDataPath);
+                        LoadPath<InteractiveObjectsData>(string.Concat(DataFolderPath, _interactiveObjectsDataPath));
                 return _interactiveObjectsData;
             }
         }
@@ -43,7 +43,7 @@ namespace Birds
             get
             {
                 if (_gameProperties == null) _gameProperties =
-                        LoadPath<GameProperties>(DataFolderPath + _gamePropertiesPath);
+                        LoadPath<GameProperties>(string.Concat(DataFolderPath, _gamePropertiesPath));
                 return _gameProperties;
             }
         }
@@ -53,7 +53,7 @@ namespace Birds
             get
             {
                 if (_playerData == null) _playerData =
-                            Resources.Load<PlayerData>(DataFolderPath + _playerDataPath);
+                            Resources.Load<PlayerData>(string.Concat(DataFolderPath, _playerDataPath));
                 return _playerData;
             }
         }

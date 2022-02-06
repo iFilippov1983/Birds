@@ -5,29 +5,19 @@ namespace Birds
 {
     class HitAnimationController
     {
-        private GameObject _destroyAnomationPrefab;
-        private Stack<GameObject> _animationGOs;
+        private GameObject _destroyAnimationPrefab;
 
-        public HitAnimationController(GameProperties gameProperties)
+        public HitAnimationController(GameObject prefab)
         {
-            _destroyAnomationPrefab = gameProperties.DestroyAnimation;
-            _animationGOs = new Stack<GameObject>();
+            _destroyAnimationPrefab = prefab;
         }
 
         public void PlayDestroyAnimation(Vector3 position)
         {
-            var explosion = Object.Instantiate(_destroyAnomationPrefab);
+            var explosion = Object.Instantiate(_destroyAnimationPrefab);
             explosion.transform.position = position;
 
-            _animationGOs.Push(explosion);
-        }
-
-        public void ClearStack()
-        {
-            foreach (GameObject go in _animationGOs)
-            {
-                Object.Destroy(go);
-            }
+            Object.Destroy(explosion, 2);
         }
     }
 }

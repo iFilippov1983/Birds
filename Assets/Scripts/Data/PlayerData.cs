@@ -16,7 +16,7 @@ namespace Birds
             get
             {
                 if (_mousePositionObject == null) _mousePositionObject =
-                             Resources.Load<GameObject>(DataPath + _mousePoritionPrefabPath);
+                             Resources.Load<GameObject>(string.Concat(DataPath, _mousePoritionPrefabPath));
                 return _mousePositionObject;
             }
         }

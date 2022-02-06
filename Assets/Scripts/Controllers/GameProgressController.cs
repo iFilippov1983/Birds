@@ -7,27 +7,24 @@ namespace Birds
     {
         private ScoresBarController _scoresBarController;
         private InteractiveObjectsController _objectsController;
-        private GameProperties _gameProperties;
         private TimerController _timerController;
         private float _timeToAdd;
 
         public GameProgressController
             (
-            GameProperties gameProperties, 
+            float timeToAdd,
             InteractiveObjectsController objectsController,
             ScoresBarController scoresBarController,
             TimerController timerController
             )
         {
-            _gameProperties = gameProperties;
             _objectsController = objectsController;
             _scoresBarController = scoresBarController;
             _timerController = timerController;
+            _timeToAdd = timeToAdd;
         }
         public void Initialize()
         {
-            _timeToAdd = _gameProperties.TimeToAddForBonus;
-
             _objectsController.OnHitObjectDestroyed += _scoresBarController.Add;
             _objectsController.OnHitObjectEscape += _scoresBarController.Substract;
             _objectsController.OnBonusHit += AddTime;

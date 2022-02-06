@@ -19,9 +19,9 @@ namespace Birds
         public List<GameObject> Clouds => _cloudsSpawner.Clouds;
         public Canvas Timer => _timer;
 
-        public SceneInitializer(GameData gameData)
+        public SceneInitializer(SceneData sceneData)
         {
-            _sceneData = gameData.SceneData;
+            _sceneData = sceneData;
             _cloudsSpawner = new CloudsSpawner(_sceneData.CloudsField, _sceneData.CloudsPrefabs);
         }
 

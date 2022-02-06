@@ -12,7 +12,6 @@ namespace Birds
         private BonusProperties _properties;
         private float _lifeTime;
         private SpriteRenderer _spriteRenderer;
-        private UnityEngine.Object _explosionPrefab;
 
         public Action<Bonus> OnLifeTermination;
         public Action<Bonus> OnShot;
@@ -22,7 +21,7 @@ namespace Birds
             get
             {
                 if (_properties == null) _properties =
-                             Resources.Load<BonusProperties>(DataPath + _bonusPropertiesPath);
+                             Resources.Load<BonusProperties>(string.Concat(DataPath, _bonusPropertiesPath));
                 return _properties;
             }
         }

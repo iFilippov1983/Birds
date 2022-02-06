@@ -2,11 +2,26 @@
 
 namespace Birds
 {
-    public class InteractiveObjectBuilder
+    public sealed class InteractiveObjectBuilder
     {
         private GameObject _interactiveObject;
 
-        public InteractiveObjectBuilder MakeInstance(IInteractive prefab)
+        public IInteractive Build(IInteractive prefab, Vector2 position, bool isActive, bool isFliped, float gravityScale)
+        {
+            return MakeInstance(prefab)
+                    .SetPosition(position)
+                    .SetActivityState(isActive)
+                    .SetSpriteRendererFlip(isFliped)
+                    .SetGravityScale(gravityScale)
+                    .Build();
+        }
+
+        private IInteractive Build()
+        {
+            return _interactiveObject.GetComponent<IInteractive>();
+        }
+
+        private InteractiveObjectBuilder MakeInstance(IInteractive prefab)
         {
             var obj = prefab.GetSelfGameObject();
             _interactiveObject = Object.Instantiate(obj);
@@ -14,21 +29,21 @@ namespace Birds
             return this;
         }
 
-        public InteractiveObjectBuilder SetPosition(Vector2 position)
+        private InteractiveObjectBuilder SetPosition(Vector2 position)
         {
             _interactiveObject.transform.position = position;
 
             return this;
         }
 
-        public InteractiveObjectBuilder SetActivityState(bool isActive)
+        private InteractiveObjectBuilder SetActivityState(bool isActive)
         {
             _interactiveObject.gameObject.SetActive(isActive);
 
             return this;
         }
 
-        public InteractiveObjectBuilder SetSpriteRendererFlip(bool isFliped)
+        private InteractiveObjectBuilder SetSpriteRendererFlip(bool isFliped)
         {
             var sr = _interactiveObject.GetComponent<SpriteRenderer>();
             sr.flipX = isFliped;
@@ -36,16 +51,11 @@ namespace Birds
             return this;
         }
 
-        public InteractiveObjectBuilder SetGravityScale(float value)
+        private InteractiveObjectBuilder SetGravityScale(float value)
         {
             _interactiveObject.gameObject.GetComponent<Rigidbody2D>().gravityScale = value;
 
             return this;
-        }
-
-        public IInteractive Build()
-        {
-            return _interactiveObject.GetComponent<IInteractive>();
         }
     }
 }

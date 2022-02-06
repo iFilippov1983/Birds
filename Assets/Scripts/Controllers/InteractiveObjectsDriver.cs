@@ -2,7 +2,7 @@
 
 namespace Birds
 {
-    public class InteractiveObjectsDriver
+    public sealed class InteractiveObjectsDriver
     {
         private HitObjectProperties _properties;
 

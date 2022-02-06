@@ -1,14 +1,14 @@
 namespace Birds
 {
-    public class GameInitializer
+    public sealed class GameInitializer
     {
-        public GameInitializer(ControllersProxy controllers, GameData gameData)
+        public GameInitializer(ControllersDepo controllers, GameData gameData)
         {
-            var sceneInitializer = new SceneInitializer(gameData);
+            var sceneInitializer = new SceneInitializer(gameData.SceneData);
             var scoresBarController = new ScoresBarController(gameData, sceneInitializer);
-            var timerController = new TimerController(gameData.GameProperties, sceneInitializer);
+            var timerController = new TimerController(gameData.GameProperties.GameTimeOnStart, sceneInitializer);
             var interactiveObjectsController = new InteractiveObjectsController(gameData);
-            var gameProgressController = new GameProgressController(gameData.GameProperties, interactiveObjectsController, scoresBarController, timerController);
+            var gameProgressController = new GameProgressController(gameData.GameProperties.TimeToAddForBonus, interactiveObjectsController, scoresBarController, timerController);
             
             controllers.Add(sceneInitializer);
             controllers.Add(scoresBarController);

@@ -2,14 +2,14 @@ using UnityEngine;
 
 namespace Birds
 {
-    public class GameHandler : MonoBehaviour
+    public class Main : MonoBehaviour
     {
         [SerializeField] private GameData _gameData;
-        private ControllersProxy _controllers;
+        private ControllersDepo _controllers;
 
         public void Awake()
         {
-            _controllers = new ControllersProxy();
+            _controllers = new ControllersDepo();
             new GameInitializer(_controllers, _gameData);
             _controllers.Configure();
         }
